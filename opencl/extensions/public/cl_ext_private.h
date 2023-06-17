@@ -88,6 +88,12 @@ using cl_unified_shared_memory_type_intel = cl_uint;
 #define CL_MEM_ALLOW_UNRESTRICTED_SIZE_INTEL (1 << 23)
 
 /******************************
+ * cl_intel_device_attribute_query v1.1
+ *******************************/
+
+#define CL_DEVICE_FREE_MEMORY_INTEL 0x10060
+
+/******************************
  *        UNIFIED MEMORY       *
  *******************************/
 

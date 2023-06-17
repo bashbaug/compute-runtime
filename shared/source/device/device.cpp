@@ -250,6 +250,7 @@ bool Device::createDeviceImpl() {
     executionEnvironment->memoryManager->setDefaultEngineIndex(getRootDeviceIndex(), defaultEngineIndexWithinMemoryManager);
 
     getRootDeviceEnvironmentRef().initOsTime();
+    getRootDeviceEnvironmentRef().initOsMemoryInfo();
 
     initializeCaps();
 
@@ -762,7 +763,9 @@ void Device::initializeEngineRoundRobinControls() {
     this->availableEnginesForCommandQueueusRoundRobin = availableEngines;
 }
 
-OSTime *Device::getOSTime() const { return getRootDeviceEnvironment().osTime.get(); };
+OSTime *Device::getOSTime() const { return getRootDeviceEnvironment().osTime.get(); }
+
+OSMemoryInfo *Device::getOSMemoryInfo() const { return getRootDeviceEnvironment().osMemoryInfo.get(); }
 
 bool Device::getUuid(std::array<uint8_t, ProductHelper::uuidSize> &uuid) {
     if (this->uuid.isValid) {

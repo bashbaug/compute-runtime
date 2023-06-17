@@ -31,6 +31,7 @@ class MemoryManager;
 class MemoryOperationsHandler;
 class OSInterface;
 class OSTime;
+class OSMemoryInfo;
 class SipKernel;
 class SWTagsManager;
 class ProductHelper;
@@ -59,6 +60,7 @@ struct RootDeviceEnvironment {
     MOCKABLE_VIRTUAL void initAubCenter(bool localMemoryEnabled, const std::string &aubFileName, CommandStreamReceiverType csrType);
     bool initOsInterface(std::unique_ptr<HwDeviceId> &&hwDeviceId, uint32_t rootDeviceIndex);
     void initOsTime();
+    void initOsMemoryInfo();
     void initGmm();
     void initDebugger();
     void initDebuggerL0(Device *neoDevice);
@@ -93,6 +95,7 @@ struct RootDeviceEnvironment {
     std::unique_ptr<AubCenter> aubCenter;
     std::unique_ptr<BindlessHeapsHelper> bindlessHeapsHelper;
     std::unique_ptr<OSTime> osTime;
+    std::unique_ptr<OSMemoryInfo> osMemoryInfo;
 
     std::unique_ptr<CompilerInterface> compilerInterface;
     std::unique_ptr<BuiltIns> builtins;

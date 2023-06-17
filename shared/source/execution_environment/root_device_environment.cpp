@@ -31,6 +31,7 @@
 #include "shared/source/memory_manager/memory_manager.h"
 #include "shared/source/memory_manager/memory_operations_handler.h"
 #include "shared/source/os_interface/os_interface.h"
+#include "shared/source/os_interface/os_memoryinfo.h"
 #include "shared/source/os_interface/os_time.h"
 #include "shared/source/os_interface/product_helper.h"
 #include "shared/source/utilities/software_tags_manager.h"
@@ -128,6 +129,12 @@ void RootDeviceEnvironment::initGmm() {
 void RootDeviceEnvironment::initOsTime() {
     if (!osTime) {
         osTime = OSTime::create(osInterface.get());
+    }
+}
+
+void RootDeviceEnvironment::initOsMemoryInfo() {
+    if (!osMemoryInfo) {
+        osMemoryInfo = OSMemoryInfo::create(osInterface.get());
     }
 }
 

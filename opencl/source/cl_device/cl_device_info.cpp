@@ -14,6 +14,7 @@
 #include "shared/source/helpers/get_info.h"
 #include "shared/source/helpers/gfx_core_helper.h"
 #include "shared/source/helpers/hw_info.h"
+#include "shared/source/os_interface/os_memoryinfo.h"
 #include "shared/source/os_interface/os_time.h"
 
 #include "opencl/source/cl_device/cl_device.h"
@@ -296,6 +297,40 @@ cl_int ClDevice::getDeviceInfo(cl_device_info paramName,
         param.bitfield = clGfxCoreHelper.getSupportedDeviceFeatureCapabilities(this->getRootDeviceEnvironment());
         src = &param.bitfield;
         retSize = srcSize = sizeof(cl_device_feature_capabilities_intel);
+        break;
+    }
+    case CL_DEVICE_FREE_MEMORY_INTEL: {
+        fprintf(stderr, "CL_DEVICE_FREE_MEMORY_INTEL!\n");
+        uint64_t total = 0;
+        this->getRootDeviceEnvironment().osMemoryInfo->getMemoryAllocInfo(&param.ulong, &total);
+        src = &param.ulong;
+        retSize = srcSize = sizeof(cl_ulong);
+#if 0
+        {
+            auto& osInterface = getRootDeviceEnvironment().osInterface;
+            auto pDrm = osInterface->getDriverModel().as<NEO::Drm>();
+            auto status = pDrm->queryMemoryInfo();
+            if (status == false) {
+                fprintf(stderr, "pDRM->queryMemoryInfo() returned false!\n");
+                return CL_INVALID_OPERATION;
+            }
+            auto memoryInfo = pDrm->getMemoryInfo();
+            if (!memoryInfo) {
+                fprintf(stderr, "pDrm->getMemoryInfo() returned nullptr!\n");
+                return CL_INVALID_OPERATION;
+            }
+            std::vector<NDO::MemoryRegion> deviceRegions;
+            for (auto region : memoryInfo->getDrmRegionInfos()) {
+                if (region.region.memoryClass == drm_i915_gem_memory_class::I915_MEMORY_CLASS_DEVICE) {
+                    fprintf(stderr, "Got a region: free = %zu, size = %zu\n", region.unallocatedSize, region.probedSize);
+                    deviceRegions.push_back(region);
+                }
+            }
+            param.ulong = deviceRegions[0].unallocatedSize;
+            retSize = srcSize = sizeof(cl_ulong);
+            break;
+        }
+#endif
         break;
     }
     case CL_DEVICE_PCI_BUS_INFO_KHR:

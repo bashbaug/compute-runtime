@@ -20,6 +20,7 @@ struct ClDeviceInfoParam {
     union {
         cl_bool boolean;
         cl_uint uint;
+        cl_ulong ulong;
         cl_bitfield bitfield;
     };
 };

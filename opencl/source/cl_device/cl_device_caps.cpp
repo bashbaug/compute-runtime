@@ -416,7 +416,11 @@ void ClDevice::initializeExtensionsWithVersion() {
     deviceInfo.extensionsWithVersion.reserve(deviceExtensionsVector.size());
     for (auto deviceExtension : deviceExtensionsVector) {
         cl_name_version deviceExtensionWithVersion;
-        deviceExtensionWithVersion.version = CL_MAKE_VERSION(1, 0, 0);
+        if (deviceExtension == "cl_intel_device_attribute_query") {
+            deviceExtensionWithVersion.version = CL_MAKE_VERSION(1, 1, 0);
+        } else {
+            deviceExtensionWithVersion.version = CL_MAKE_VERSION(1, 0, 0);
+        }
         strcpy_s(deviceExtensionWithVersion.name, CL_NAME_VERSION_MAX_NAME_SIZE, deviceExtension.c_str());
         deviceInfo.extensionsWithVersion.push_back(deviceExtensionWithVersion);
     }

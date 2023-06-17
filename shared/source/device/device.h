@@ -29,6 +29,7 @@ class SyncBufferHandler;
 enum class EngineGroupType : uint32_t;
 class DebuggerL0;
 class OSTime;
+class OSMemoryInfo;
 class SourceLevelDebugger;
 class SubDevice;
 struct PhysicalDevicePciBusInfo;
@@ -93,6 +94,7 @@ class Device : public ReferenceTrackedObject<Device> {
     GmmHelper *getGmmHelper() const;
     GmmClientContext *getGmmClientContext() const;
     OSTime *getOSTime() const;
+    OSMemoryInfo *getOSMemoryInfo() const;
     double getProfilingTimerResolution();
     uint64_t getProfilingTimerClock();
     double getPlatformHostTimerResolution() const;
