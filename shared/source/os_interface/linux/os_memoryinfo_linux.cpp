@@ -18,7 +18,7 @@ OSMemoryInfoLinux::OSMemoryInfoLinux(OSInterface *osInterface) {
     this->osInterface = osInterface;
 }
 
-bool OSMemoryInfo::getMemoryAllocInfo(uint64_t *free, uint64_t *total) const
+bool OSMemoryInfoLinux::getMemoryAllocInfo(uint64_t *free, uint64_t *total) const
 {
     *free = 999;
     *total = 888;

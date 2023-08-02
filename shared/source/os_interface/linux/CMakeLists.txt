@@ -71,6 +71,8 @@ set(NEO_CORE_OS_INTERFACE_LINUX
     ${CMAKE_CURRENT_SOURCE_DIR}/os_library_linux.h
     ${CMAKE_CURRENT_SOURCE_DIR}/os_memory_linux.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/os_memory_linux.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/os_memoryinfo_linux.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/os_memoryinfo_linux.h
     ${CMAKE_CURRENT_SOURCE_DIR}/os_metrics_library.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/os_socket.h
     ${CMAKE_CURRENT_SOURCE_DIR}/os_thread_linux.cpp
