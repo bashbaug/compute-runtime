@@ -110,6 +110,11 @@ inline cl_int getQueueInfo(CommandQueue *queue,
         GetInfo::setParamValueReturnSize(paramValueSizeRet, sourceSize, getInfoStatus);
         break;
     }
+    case 0x31337: {
+        cl_bool isEmpty = queue->isCompleted() ? CL_TRUE : CL_FALSE;
+        retVal = changeGetInfoStatusToCLResultType(getInfoHelper.set<cl_bool>(isEmpty));
+        break;
+    }
     default:
         getHostQueueInfo(queue, paramName, getInfoHelper, retVal);
         break;

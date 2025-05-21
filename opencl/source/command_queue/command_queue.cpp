@@ -498,6 +498,10 @@ bool CommandQueue::isCompleted(TaskCountType gpgpuTaskCount, const Range<CopyEng
     return false;
 }
 
+bool CommandQueue::isCompleted() {
+    return isCompleted(this->taskCount, this->bcsStates);
+}
+
 WaitStatus CommandQueue::waitUntilComplete(TaskCountType gpgpuTaskCountToWait, Range<CopyEngineState> copyEnginesToWait, FlushStamp flushStampToWait, bool useQuickKmdSleep, bool cleanTemporaryAllocationList, bool skipWait) {
     WAIT_ENTER()
 
@@ -1509,7 +1513,7 @@ bool CommandQueue::migrateMultiGraphicsAllocationsIfRequired(const BuiltinOpPara
 }
 
 void CommandQueue::handlePostCompletionOperations(bool checkQueueCompletion) {
-    if (checkQueueCompletion && !isCompleted(this->taskCount, this->bcsStates)) {
+    if (checkQueueCompletion && !isCompleted()) {
         return;
     }
 
