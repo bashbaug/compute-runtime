@@ -88,6 +88,7 @@ std::string CompilerProductHelperHw<gfxProduct>::getDeviceExtensions(const Hardw
                              "cl_intel_device_attribute_query "
                              "cl_khr_expect_assume "
                              "cl_khr_extended_bit_ops "
+                             "cl_khr_kernel_clock "
                              "cl_khr_suggested_local_work_size "
                              "cl_intel_split_work_group_barrier ";
 

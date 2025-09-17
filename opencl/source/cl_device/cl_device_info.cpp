@@ -176,6 +176,7 @@ cl_int ClDevice::getDeviceInfo(cl_device_info paramName,
     case CL_DEVICE_VENDOR_ID:                                   getCap<CL_DEVICE_VENDOR_ID                                   >(src, srcSize, retSize); break;
     case CL_DEVICE_VERSION:                                     getStr<CL_DEVICE_VERSION                                     >(src, srcSize, retSize); break;
     case CL_DEVICE_WORK_GROUP_COLLECTIVE_FUNCTIONS_SUPPORT:     getCap<CL_DEVICE_WORK_GROUP_COLLECTIVE_FUNCTIONS_SUPPORT     >(src, srcSize, retSize); break;
+    case CL_DEVICE_KERNEL_CLOCK_CAPABILITIES_KHR:               getCap<CL_DEVICE_KERNEL_CLOCK_CAPABILITIES_KHR               >(src, srcSize, retSize); break;
     case CL_DEVICE_INTEGER_DOT_PRODUCT_CAPABILITIES_KHR:                                 getCap<CL_DEVICE_INTEGER_DOT_PRODUCT_CAPABILITIES_KHR                                 >(src, srcSize, retSize); break;
     case CL_DEVICE_INTEGER_DOT_PRODUCT_ACCELERATION_PROPERTIES_4x8BIT_PACKED_KHR:        getCap<CL_DEVICE_INTEGER_DOT_PRODUCT_ACCELERATION_PROPERTIES_4x8BIT_PACKED_KHR        >(src, srcSize, retSize); break;
     case CL_DEVICE_INTEGER_DOT_PRODUCT_ACCELERATION_PROPERTIES_8BIT_KHR:                 getCap<CL_DEVICE_INTEGER_DOT_PRODUCT_ACCELERATION_PROPERTIES_8BIT_KHR                 >(src, srcSize, retSize); break;

@@ -149,6 +149,7 @@ struct ClDeviceInfo {
     std::vector<const char*>                                                      spirvExtensions;
     std::vector<const char*>                                                      spirvExtendedInstructionSets;
     std::vector<cl_uint>                                                          spirvCapabilities;
+    cl_device_kernel_clock_capabilities_khr                                       kernelClockCapabilities;
 };
 // clang-format on
 

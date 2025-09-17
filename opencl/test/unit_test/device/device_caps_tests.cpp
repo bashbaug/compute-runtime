@@ -735,6 +735,13 @@ TEST_F(DeviceGetCapsTest, WhenDeviceIsCreatedThenExtendedBitOpsExtensionIsReport
     EXPECT_TRUE(hasSubstr(caps.deviceExtensions, std::string("cl_khr_extended_bit_ops")));
 }
 
+TEST_F(DeviceGetCapsTest, WhenDeviceIsCreatedThenKernelClockExtensionIsReported) {
+    auto device = std::make_unique<MockClDevice>(MockDevice::createWithNewExecutionEnvironment<MockDevice>(defaultHwInfo.get()));
+    const auto &caps = device->getDeviceInfo();
+
+    EXPECT_TRUE(hasSubstr(caps.deviceExtensions, std::string("cl_khr_kernel_clock")));
+}
+
 TEST_F(DeviceGetCapsTest, WhenDeviceIsCreatedThenThrottleHintsExtensionIsReported) {
     auto device = std::make_unique<MockClDevice>(MockDevice::createWithNewExecutionEnvironment<MockDevice>(defaultHwInfo.get()));
     const auto &caps = device->getDeviceInfo();

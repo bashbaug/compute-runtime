@@ -386,6 +386,8 @@ void ClDevice::initializeCaps() {
             CL_TRUE}; // accumulating_saturating_mixed_signedness_accelerated;
     }
 
+    deviceInfo.kernelClockCapabilities = CL_DEVICE_KERNEL_CLOCK_SCOPE_SUB_GROUP_KHR;
+
     initializeOsSpecificCaps();
     getOpenclCFeaturesList(hwInfo, deviceInfo.openclCFeatures, getDevice().getCompilerProductHelper(), releaseHelper);
 }
@@ -494,6 +496,7 @@ void ClDevice::initializeSpirvQueries() {
     }
 
     if (std::find(extVector.begin(), extVector.end(), "cl_khr_expect_assume") != extVector.end()) {
+        deviceInfo.spirvExtensions.push_back("SPV_KHR_expect_assume");
         deviceInfo.spirvCapabilities.push_back(spv::CapabilityExpectAssumeKHR);
     }
 
